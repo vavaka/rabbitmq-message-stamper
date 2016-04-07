@@ -1,0 +1,6 @@
+{application, rabbitmq_message_stamper,
+ [{description, "RabbitMQ Message Stamper"},
+  {vsn, ""},
+  {modules, []},
+  {registered, []},
+  {applications, [kernel, stdlib, rabbit]}]}.
