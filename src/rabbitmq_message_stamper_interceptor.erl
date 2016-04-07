@@ -57,15 +57,12 @@ applies_to() ->
 %%----------------------------------------------------------------------------
 stamp_content(Method, Content) ->
     Headers = content_headers(Content),
-    lager:info("HEADERS: ~p", [Headers]),
-
     NewHeaders = lists:foldl(fun(#message_stamper{id = StamperId, func = StamperFunc}, StampedHeaders) ->
         case should_apply_stamper(StamperId, Method) of
             true -> StamperFunc(StampedHeaders);
             false -> StampedHeaders
         end
     end, Headers, stampers()),
-    lager:info("NEW_HEADERS: ~p", [NewHeaders]),
 
     set_content_headers(NewHeaders, Content).
 
